@@ -1,4 +1,4 @@
-# Portfolio
+# PORTFOLIO
 
 Бэкенд-проект Портфолио на **TypeScript, Node.js, NestJS, GraphQL (Apollo), Prisma и PostgreSQL**.
 
