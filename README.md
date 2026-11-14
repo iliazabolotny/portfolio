@@ -1,6 +1,6 @@
 # PORTFOLIO
 
-Бэкенд-проект Портфолио на **TypeScript, Node.js, NestJS, GraphQL (Apollo), Prisma и PostgreSQL**.
+Бэкенд проект Портфолио на **TypeScript, Node.js, NestJS, GraphQL (Apollo), Prisma и PostgreSQL**.
 
 ## Структура приложения
 
@@ -8,10 +8,9 @@
 
 - **GraphQL Resolver (`src/profile/profile.resolver.ts`)** — транспортный слой: объявляет GraphQL query и связывает вложенные поля профиля с сервисами. Бизнес-правила и Prisma-запросы здесь не размещаются.
 - **Services (`profile`, `skills`, `experience`, `projects`)** — слой приложения: инкапсулирует получение данных и сортировку связанных коллекций.
-- **PrismaService (`src/prisma`)** — инфраструктурный слой доступа к PostgreSQL. Он глобально зарегистрирован через `PrismaModule` и управляет подключением/отключением клиента.
-- **GraphQL Models** — типы публичной GraphQL-схемы. Они не зависят от Prisma-моделей.
+- **PrismaService (`src/prisma`)** — инфраструктурный слой доступа к PostgreSQL. Он глобально зарегистрирован через `PrismaModule` и управляет подключением/отключением реализации ORM.
 
-Такое разделение позволяет менять транспорт или способ хранения независимо и не превращает резолверы в слой бизнес-логики.
+Такое разделение позволяет менять способ хранения независимо и не превращает резолверы в слой бизнес-логики.
 
 ### Модель данных
 
@@ -20,11 +19,11 @@
 - `Experience` — место работы, должность, даты, описание и массив достижений.
 - `Project` — проект, описание, ссылка на продукт, репозиторий, технологии и признак избранного.
 
-Связи — `Profile 1:N Skill`, `Profile 1:N Experience`, `Profile 1:N Project`. Внешние ключи используют `ON DELETE CASCADE`, чтобы дочерние записи не оставались без профиля. Индексы добавлены для выборок дочерних сущностей по `profileId`; опыт сортируется по дате начала, проекты — по признаку featured и имени.
+Связи — `Profile 1:N Skill`, `Profile 1:N Experience`, `Profile 1:N Project`. Внешние ключи используют `ON DELETE CASCADE`. опыт сортируется по дате начала, проекты — по признаку featured и имени.
 
 ### GraphQL API
 
-Использован NestJS GraphQL в code-first режиме: GraphQL-схема генерируется из декорированных классов. Это сохраняет типизацию TypeScript и уменьшает расхождение между типами и схемой. Для локальной разработки включён Apollo Sandbox через landing page plugin Apollo Server. В production публичную introspection/Sandbox следует ограничить или отключить согласно требованиям безопасности.
+Использован NestJS GraphQL в code-first режиме: GraphQL-схема генерируется из декорированных классов. Это сохраняет типизацию TypeScript и уменьшает расхождение между типами и схемой. Для локальной разработки включён Apollo Sandbox через landing page plugin Apollo Server.
 
 ## Запуск через Docker
 
@@ -37,8 +36,6 @@ docker compose up --build
 После запуска:
 
 - Apollo Sandbox: <http://localhost:4000/graphql>
-- PostgreSQL: `localhost:5432`
-- DB: `portfolio_db`, user: `portfolio`, password: `portfolio_secret`
 
 Остановить контейнеры:
 
@@ -52,9 +49,9 @@ docker compose down
 docker compose down -v
 ```
 
-## Локальный запуск без контейнера API
+## Локальный запуск
 
-Нужны Node.js 20 и выше и Docker с PostgreSQL.
+Нужны Node.js 20 и выше, Docker с PostgreSQL.
 
 1. Установите зависимости:
 
@@ -83,4 +80,4 @@ docker compose down -v
    npm run start:dev
    ```
 
-Откройте `http://localhost:4000/graphql`.
+После запуска `http://localhost:4000/graphql`.
