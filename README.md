@@ -80,4 +80,6 @@ docker compose down -v
    npm run start:dev
    ```
 
-После запуска `http://localhost:4000/graphql`.
+После запуска:
+
+- Apollo Sandbox: <http://localhost:4000/graphql>
