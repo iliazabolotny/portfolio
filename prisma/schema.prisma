@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Profile {
-  id          String!       @id @default(cuid())
-  name        String!
-  description String!       @db.Text
+  id          String       @id @default(cuid())
+  name        String
+  description String       @db.Text
   email       String?
   location    String?
   githubUrl   String?
-  gitlabUrl String?
+  gitlabUrl   String?
   websiteUrl  String?
   skills      Skill[]
   experience  Experience[]
@@ -24,40 +24,40 @@ model Profile {
 }
 
 model Skill {
-  id        String!  @id @default(cuid())
-  name      String!
+  id        String   @id @default(cuid())
+  name      String
   category  String?
   level     String?
   profileId String
-  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
   @@unique([profileId, name])
   @@index([profileId])
 }
 
 model Experience {
-  id          String!   @id @default(cuid())
-  company     String!
-  position    String!
-  location    String?
-  startDate   DateTime
-  endDate     DateTime?
-  isCurrent   Boolean!  @default(false)
-  description String?  @db.Text
+  id           String    @id @default(cuid())
+  company      String
+  position     String
+  location     String?
+  startDate    DateTime
+  endDate      DateTime?
+  isCurrent    Boolean   @default(false)
+  description  String?   @db.Text
   achievements String[]
-  profileId   String
-  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId    String
+  profile      Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
   @@index([profileId, startDate])
 }
 
 model Project {
-  id          String!   @id @default(cuid())
-  name        String!
-  description String?  @db.Text
-  url         String?
+  id            String   @id @default(cuid())
+  name          String
+  description   String?  @db.Text
+  url           String?
   repositoryUrl String?
-  technologies String[]
-  featured    Boolean!  @default(false)
-  profileId   String
-  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  technologies  String[]
+  featured      Boolean  @default(false)
+  profileId     String
+  profile       Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
   @@index([profileId])
 }
