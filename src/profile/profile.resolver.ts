@@ -17,7 +17,7 @@ export class ProfileResolver {
     private readonly projects: ProjectsService,
   ) {}
 
-  @Query(() => Profile, { name: 'profile', description: 'Returns the portfolio profile and its related information.' })
+  @Query(() => Profile, { name: 'profile'})
   profile() { return this.profiles.getProfile(); }
 
   @ResolveField(() => [Skill], { name: 'skills' })
