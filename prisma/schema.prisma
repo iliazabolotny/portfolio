@@ -10,7 +10,7 @@ datasource db {
 model Profile {
   id          String       @id @default(cuid())
   name        String
-  description String       @db.Text
+  description String?       @db.Text
   email       String?
   location    String?
   githubUrl   String?
@@ -43,9 +43,10 @@ model Experience {
   endDate      DateTime?
   isCurrent    Boolean   @default(false)
   description  String?   @db.Text
-  achievements String[]
+  achievements String[]  @default([])
   profileId    String
   profile      Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
   @@index([profileId, startDate])
 }
 
@@ -55,9 +56,13 @@ model Project {
   description   String?  @db.Text
   url           String?
   repositoryUrl String?
-  technologies  String[]
+  technologies  String[] @default([])
+  authors       String[] @default([])
   featured      Boolean  @default(false)
+  status        String?
+  releaseDate   DateTime?
   profileId     String
   profile       Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
   @@index([profileId])
 }

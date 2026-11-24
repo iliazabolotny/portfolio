@@ -11,8 +11,14 @@ export class Project {
   url?: string;
   @Field({ nullable: true })
   repositoryUrl?: string;
-  @Field(() => [String])
-  technologies!: string[];
+  @Field(() => [String], {nullable: true})
+  technologies?: string[];
+  @Field(()=>[String], {nullable: true})
+  authors?: string;
   @Field()
   featured!: boolean;
+  @Field({ nullable: true })
+  status?: string;
+  @Field(() => Date, { nullable: true })
+  releaseDate?: Date;
 }

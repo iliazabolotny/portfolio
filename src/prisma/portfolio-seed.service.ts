@@ -13,7 +13,7 @@ export class PortfolioSeedService implements OnApplicationBootstrap {
     await this.prisma.profile.create({
       data: {
         id: profileId,
-        name: 'Илья Заболотный',
+        name: 'Заболотный Илья Александрович',
         description: 'Fullstack-разработчик с коммерческим опытом создания enterprise-приложений на TypeScript, React, Next.js, Java, Spring Framework, Node.js. Работал в Agile-командах НетКрэкер, ВымпелКом-Информационные технологии, также в проекте с Waterfall-методологией в компании Тензор. Занимался разработкой решений и алгоритмов для пространственно-временной обработки сигналов для современных систем беспроводной связи в компании Радио Лаб НН.',
         email: 'zabolotnyyia@gmail.com',
         location: 'Russia',
@@ -30,7 +30,10 @@ export class PortfolioSeedService implements OnApplicationBootstrap {
           { name: 'Docker', category: 'DevOps', level: 'Advanced' },
         ] },
         experience: { create: [] },
-        projects: { create: [] },
+        projects: { create: [
+          {name: 'Моделирование пространственной когерентности многомодового сигнала в случайно-неоднородном волноводе', featured: true, authors: ['И.А Заболтный', 'А.И. Малеханов'], status: 'published', releaseDate: new Date('2019-05-13'), url: 'https://elibrary.ru/item.asp?id=41242272'},
+          {name: ' К вопросу об оптимальной пространственной обработке многомодовых сигналов в случайно-неоднородных волноводах.', featured: true, authors: ['И.А Заболтный', 'А.И. Малеханов'], status: 'published', releaseDate: new Date('2020-05-15'), url: 'https://elibrary.ru/item.asp?id=44254507'}
+        ] },
       },
     });
   }

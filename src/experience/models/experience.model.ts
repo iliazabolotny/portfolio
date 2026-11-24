@@ -16,8 +16,8 @@ export class Experience {
   isCurrent!: boolean;
   @Field({ nullable: true })
   description?: string;
-  @Field(() => [String])
-  achievements!: string[];
+  @Field(() => [String], {nullable: true})
+  achievements?: string[];
   @Field(() => ID, { nullable: true })
   profileId?: string;
 }

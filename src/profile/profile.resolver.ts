@@ -1,11 +1,11 @@
 import { Parent, ResolveField, Resolver, Query } from '@nestjs/graphql';
 import { ProfileService } from './profile.service';
-import { Profile } from './entities/profile.entity';
-import { Skill } from '../skills/entities/skill.entity';
+import { Profile } from './models/profile.model';
+import { Skill } from '../skills/models/skill.model';
 import { SkillsService } from '../skills/skills.service';
-import { Experience } from '../experience/etitites/experience.entity';
+import { Experience } from '../experience/models/experience.model';
 import { ExperienceService } from '../experience/experience.service';
-import { Project } from '../projects/entitites/project.entity';
+import { Project } from '../projects/models/project.model';
 import { ProjectsService } from '../projects/projects.service';
 
 @Resolver(() => Profile)
