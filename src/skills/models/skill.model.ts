@@ -9,6 +9,6 @@ export class Skill {
   category?: string;
   @Field({ nullable: true })
   level?: string;
-  @Field(() => ID, { nullable: true })
+  @Field(() => ID)
   profileId?: string;
 }

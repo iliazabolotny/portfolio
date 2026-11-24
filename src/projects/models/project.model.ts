@@ -1,7 +1,7 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Project {
-  @Field()
+  @Field(() => ID)
   id!: string;
   @Field()
   name!: string;
@@ -21,4 +21,6 @@ export class Project {
   status?: string;
   @Field(() => Date, { nullable: true })
   releaseDate?: Date;
+  @Field(() => ID)
+  profileId?: string;
 }

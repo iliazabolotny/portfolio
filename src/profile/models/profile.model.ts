@@ -21,10 +21,10 @@ export class Profile {
   gitlabUrl?: string;
   @Field({ nullable: true })
   websiteUrl?: string;
-  @Field(() => [Skill], { nullable: true })
+  @Field(() => [Skill])
   skills?: Skill[];
-  @Field(() => [Experience], { nullable: true })
+  @Field(() => [Experience])
   experience?: Experience[];
-  @Field(() => [Project], { nullable: true })
+  @Field(() => [Project])
   projects?: Project[];
 }

@@ -18,6 +18,6 @@ export class Experience {
   description?: string;
   @Field(() => [String], {nullable: true})
   achievements?: string[];
-  @Field(() => ID, { nullable: true })
+  @Field(() => ID)
   profileId?: string;
 }
